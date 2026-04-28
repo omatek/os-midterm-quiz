@@ -4,15 +4,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>OS Midterm Master Portal</title>
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-VBFKHC4SR5"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
 
-  gtag('config', 'G-VBFKHC4SR5');
-</script>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-VBFKHC4SR5"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-VBFKHC4SR5');
+    </script>
+    <!-- End Google tag -->
 
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
@@ -42,7 +43,7 @@
         <div id="menu-view" class="fade-in">
             <div class="text-center mb-10 mt-8">
                 <h1 class="text-4xl font-extrabold text-slate-900 mb-4">Midterm Prep Center</h1>
-                <p class="text-lg text-slate-600">Select a quiz version below. All questions are based on Chapters 1-4.</p>
+                <p class="text-lg text-slate-600 font-medium">Detailed Test Bank based on Silberschatz 9th Ed.</p>
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -50,9 +51,9 @@
                 <div class="bg-white rounded-xl shadow-lg hover:shadow-xl transition-shadow border-t-4 border-blue-500 overflow-hidden cursor-pointer" onclick="loadQuiz(0)">
                     <div class="p-6">
                         <div class="w-12 h-12 bg-blue-100 text-blue-600 rounded-full flex items-center justify-center text-xl font-bold mb-4">V1</div>
-                        <h2 class="text-2xl font-bold mb-2">Version 1</h2>
-                        <p class="text-slate-500 text-sm mb-6">General overview. Covers the primary concepts, structures, processes, and threads.</p>
-                        <button class="w-full bg-blue-50 text-blue-700 font-bold py-2 rounded border border-blue-200 hover:bg-blue-600 hover:text-white transition">Take Quiz</button>
+                        <h2 class="text-2xl font-bold mb-2">Detailed Set A</h2>
+                        <p class="text-slate-500 text-sm mb-6">Focuses on core definitions, storage hierarchy, and process lifecycles with full technical detail.</p>
+                        <button class="w-full bg-blue-50 text-blue-700 font-bold py-2 rounded border border-blue-200 hover:bg-blue-600 hover:text-white transition">Start Quiz</button>
                     </div>
                 </div>
 
@@ -60,9 +61,9 @@
                 <div class="bg-white rounded-xl shadow-lg hover:shadow-xl transition-shadow border-t-4 border-indigo-500 overflow-hidden cursor-pointer" onclick="loadQuiz(1)">
                     <div class="p-6">
                         <div class="w-12 h-12 bg-indigo-100 text-indigo-600 rounded-full flex items-center justify-center text-xl font-bold mb-4">V2</div>
-                        <h2 class="text-2xl font-bold mb-2">Version 2</h2>
-                        <p class="text-slate-500 text-sm mb-6">Advanced practice. Dives deeper into system architecture, models, and POSIX threading.</p>
-                        <button class="w-full bg-indigo-50 text-indigo-700 font-bold py-2 rounded border border-indigo-200 hover:bg-indigo-600 hover:text-white transition">Take Quiz</button>
+                        <h2 class="text-2xl font-bold mb-2">Detailed Set B</h2>
+                        <p class="text-slate-500 text-sm mb-6">Emphasizes OS structure nuances, IPC models, and multithreading architecture specifics.</p>
+                        <button class="w-full bg-indigo-50 text-indigo-700 font-bold py-2 rounded border border-indigo-200 hover:bg-indigo-600 hover:text-white transition">Start Quiz</button>
                     </div>
                 </div>
 
@@ -70,9 +71,9 @@
                 <div class="bg-white rounded-xl shadow-lg hover:shadow-xl transition-shadow border-t-4 border-emerald-500 overflow-hidden cursor-pointer" onclick="loadQuiz(2)">
                     <div class="p-6">
                         <div class="w-12 h-12 bg-emerald-100 text-emerald-600 rounded-full flex items-center justify-center text-xl font-bold mb-4">V3</div>
-                        <h2 class="text-2xl font-bold mb-2">Version 3</h2>
-                        <p class="text-slate-500 text-sm mb-6">Equal practice set. Features remaining topics like OpenMP and OS history.</p>
-                        <button class="w-full bg-emerald-50 text-emerald-700 font-bold py-2 rounded border border-emerald-200 hover:bg-emerald-600 hover:text-white transition">Take Quiz</button>
+                        <h2 class="text-2xl font-bold mb-2">Detailed Set C</h2>
+                        <p class="text-slate-500 text-sm mb-6">Covers system calls, OpenMP, computing environments, and advanced kernel data structures.</p>
+                        <button class="w-full bg-emerald-50 text-emerald-700 font-bold py-2 rounded border border-emerald-200 hover:bg-emerald-600 hover:text-white transition">Start Quiz</button>
                     </div>
                 </div>
             </div>
@@ -94,7 +95,7 @@
                 </button>
                 <div id="results-container" class="mt-6 hidden">
                     <h2 class="text-3xl font-black text-slate-800">Your Score: <span id="score-display"></span></h2>
-                    <p class="text-slate-600 mt-2 font-medium">Scroll up to review your correct and incorrect answers.</p>
+                    <p class="text-slate-600 mt-2 font-medium">Review your answers above to see detailed feedback.</p>
                 </div>
             </div>
         </div>
@@ -102,236 +103,266 @@
     </div>
 
     <script>
-        // --- ALL THREE QUIZ DATABASES ---
+        // --- EXPANDED & UNCOMPRESSED QUIZ DATA ---
         const allQuizzes = [
-            // ================== VERSION 1 ==================
             {
-                title: "Version 1: General Overview", color: "bg-blue-600", textColor: "text-blue-600",
+                title: "Detailed Set A: Fundamentals & Core Ops", color: "bg-blue-600", textColor: "text-blue-600",
                 sections: [
                     {
-                        chapter: "Chapter 1: Introduction", description: "15 Multiple Choice Questions",
+                        chapter: "Chapter 1: Introduction", description: "Technical MCQ",
                         questions: [
-                            { id: "v1_q1", type: "mcq", text: "1. Primary role of an OS?", options: ["Compiler", "Resource allocator", "GUI", "Batch script executor"], answer: 1 },
-                            { id: "v1_q2", type: "mcq", text: "2. Code loaded at power-up?", options: ["Kernel", "Device driver", "Bootstrap program", "CLI"], answer: 2 },
-                            { id: "v1_q3", type: "mcq", text: "3. Mechanism to transfer blocks of data without CPU?", options: ["DMA", "Cache", "Device controller", "Interrupt"], answer: 0 },
-                            { id: "v1_q4", type: "mcq", text: "4. Volatile storage?", options: ["SSD", "Main memory", "Tapes", "HDD"], answer: 1 },
-                            { id: "v1_q5", type: "mcq", text: "5. Specific tasks per processor?", options: ["Symmetric", "Clustered", "Asymmetric Multiprocessing", "Single"], answer: 2 },
-                            { id: "v1_q6", type: "mcq", text: "6. CPU switches jobs frequently for interaction?", options: ["Batch", "Clustering", "Timesharing", "Emulation"], answer: 2 },
-                            { id: "v1_q7", type: "mcq", text: "7. Dual-mode protects OS via?", options: ["User/Kernel mode", "Active/Passive", "Program/Hardware", "System/App"], answer: 0 },
-                            { id: "v1_q8", type: "mcq", text: "8. Prevents infinite loops?", options: ["Virtual memory", "Timer", "Spooling", "Trap"], answer: 1 },
-                            { id: "v1_q9", type: "mcq", text: "9. Software-generated interrupt?", options: ["Hardware interrupt", "Trap", "Boot sector", "Polling"], answer: 1 },
-                            { id: "v1_q10", type: "mcq", text: "10. Kernel structure with O(lg n) search?", options: ["Singly linked", "Circular", "Hash map", "Balanced binary search tree"], answer: 3 },
-                            { id: "v1_q11", type: "mcq", text: "11. No distinction between client/server?", options: ["Cloud", "P2P", "Client-Server", "Virtualization"], answer: 1 },
-                            { id: "v1_q12", type: "mcq", text: "12. Manages logical storage units?", options: ["Memory", "CPU", "File-System", "I/O"], answer: 2 },
-                            { id: "v1_q13", type: "mcq", text: "13. Single foreground UI, multiple background?", options: ["Desktop", "Mobile Systems", "Distributed", "Real-time"], answer: 1 },
-                            { id: "v1_q14", type: "mcq", text: "14. VMM provides?", options: ["Virtualization services", "Emulation", "Clusters", "Open-source"], answer: 0 },
-                            { id: "v1_q15", type: "mcq", text: "15. Uses most recent value of data?", options: ["Caching", "Spooling", "Cache coherency", "DMA"], answer: 2 }
+                            { id: "v1_q1", type: "mcq", text: "1. From a system view, which of the following best describes the operating system?", options: ["A) A program designed to act as an intermediary between the user and hardware.", "B) A resource allocator that manages all resources and decides between conflicting requests.", "C) A set of tools to compile and execute user applications efficiently.", "D) A graphical interface that makes computer interaction convenient for the average user."], answer: 1 },
+                            { id: "v1_q2", type: "mcq", text: "2. The bootstrap program is typically stored in which of the following locations?", options: ["A) The text section of the kernel in main memory.", "B) The hard disk's boot sector (MBS).", "C) Read-only memory (ROM) or EEPROM (firmware).", "D) The Registers within the CPU."], answer: 2 },
+                            { id: "v1_q3", type: "mcq", text: "3. What is the primary purpose of Direct Memory Access (DMA)?", options: ["A) To allow the CPU to access main memory faster through a specialized cache.", "B) To allow device controllers to transfer blocks of data directly to/from main memory without CPU intervention.", "C) To manage the virtual memory mapping between secondary storage and physical RAM.", "D) To provide a direct link between the user application and the kernel registers."], answer: 1 },
+                            { id: "v1_q4", type: "mcq", text: "4. Which statement about the storage hierarchy is correct?", options: ["A) Registers are slower than cache but larger in capacity.", "B) Main memory is non-volatile and the only large storage the CPU can access directly.", "C) Caching involves copying information into faster storage on a temporary basis.", "D) Solid-state disks are considered volatile storage."], answer: 2 },
+                            { id: "v1_q5", type: "mcq", text: "5. In a Symmetric Multiprocessing (SMP) architecture:", options: ["A) Each processor is assigned a specific task by a boss processor.", "B) Each processor performs all tasks within the operating system.", "C) Only one processor can run the kernel code at any given time.", "D) Multiple systems are working together to form a cluster."], answer: 1 },
+                            { id: "v1_q6", type: "mcq", text: "6. What is the main difference between Multiprogramming and Timesharing?", options: ["A) Multiprogramming requires multiple CPUs; Timesharing requires only one.", "B) Multiprogramming increases CPU utilization; Timesharing increases user interaction (response time).", "C) Timesharing is for batch systems; Multiprogramming is for mobile devices.", "D) There is no difference; they are interchangeable terms."], answer: 1 },
+                            { id: "v1_q7", type: "mcq", text: "7. Which bit value represents 'Kernel Mode' in the hardware mode bit?", options: ["A) Mode bit = 1", "B) Mode bit = 0", "C) Mode bit = -1", "D) Mode bit = Null"], answer: 1 },
+                            { id: "v1_q8", type: "mcq", text: "8. A 'Trap' or 'Exception' is defined as:", options: ["A) A hardware failure caused by overheating.", "B) A software-generated interrupt caused by an error or a specific request from a user program.", "C) A signal sent by a device controller to indicate an I/O operation is complete.", "D) A command used to switch the system into user mode."], answer: 1 },
+                            { id: "v1_q9", type: "mcq", text: "9. Which mechanism prevents a user program from getting stuck in an infinite loop and hogging the CPU?", options: ["A) The Trap mechanism", "B) The Timer", "C) The Program Counter", "D) Virtual Memory"], answer: 1 },
+                            { id: "v1_q10", type: "mcq", text: "10. In the storage hierarchy, which level is typically just above Main Memory?", options: ["A) Magnetic Disk", "B) Registers", "C) Cache", "D) Electronic Disk"], answer: 2 },
+                            { id: "v1_q11", type: "mcq", text: "11. Which data structure is used to manage objects by arranging them in a Last-In, First-Out (LIFO) order?", options: ["A) Queue", "B) Stack", "C) Hash Map", "D) Binary Tree"], answer: 1 },
+                            { id: "v1_q12", type: "mcq", text: "12. In a Clustered System, what allows multiple systems to share storage and provide high-availability?", options: ["A) Storage-Area Network (SAN)", "B) Symmetric Multiprocessing (SMP)", "C) Direct Memory Access (DMA)", "D) Timesharing"], answer: 0 },
+                            { id: "v1_q13", type: "mcq", text: "13. What is the common name for the 'one program running at all times on the computer'?", options: ["A) The System Program", "B) The Kernel", "C) The Application Program", "D) The Command Interpreter"], answer: 1 },
+                            { id: "v1_q14", type: "mcq", text: "14. A system where nodes act as both clients and servers to each other is known as:", options: ["A) Client-Server Architecture", "B) Virtualized Architecture", "C) Peer-to-Peer (P2P) Architecture", "D) Clustered Architecture"], answer: 2 },
+                            { id: "v1_q15", type: "mcq", text: "15. What handles the translation of high-level instructions into a different CPU's native instruction set?", options: ["A) Virtualization", "B) Caching", "C) Emulation", "D) Paging"], answer: 2 }
                         ]
                     },
                     {
-                        chapter: "Chapter 2: OS Structures", description: "15 Matching Questions",
+                        chapter: "Chapter 2: OS Structures", description: "Matching - Full Definitions",
                         questions: [
                             {
-                                id: "v1_m1", type: "matching", text: "Match terms to definitions (A-O):",
-                                terms: ["1. System Call", "2. CLI", "3. Microkernel", "4. API", "5. Layered Approach", "6. Message Passing", "7. Core Dump", "8. LKM", "9. SYSGEN", "10. Policy", "11. Mechanism", "12. System Programs", "13. DTrace", "14. Virtual Machine", "15. Application Programs"],
-                                definitions: ["A. Programs run by users", "B. Solaris live instrumentation", "C. Determines WHAT will be done", "D. Moves kernel into user space", "E. Captures process memory on failure", "F. Determines HOW to do something", "G. OS programming interface", "H. Direct command entry", "I. Good for small data exchange", "J. Custom kernel configuration", "K. Bottom hardware, top UI", "L. Separate core components added as needed", "M. Program development environment", "N. Win32 or POSIX", "O. Runs natively compiled apps in host OS"],
-                                answer: ["G","H","D","N","K","I","E","L","J","C","F","M","B","O","A"]
-                            }
-                        ]
-                    },
-                    {
-                        chapter: "Chapter 3: Processes", description: "Ordering, T/F, Fill-in-the-blanks",
-                        questions: [
-                            { id: "v1_o1", type: "ordering", text: "Order the Context Switch (1-5):", items: ["Reload saved state from PCB1", "OS interrupts Process P0", "Process P1 begins executing", "Save state of P0 into PCB0", "P0 transitions to idle"], answer: [4,1,5,2,3] },
-                            { id: "v1_tf1", type: "tf", text: "6. Program is active, process is passive.", answer: "False" },
-                            { id: "v1_tf2", type: "tf", text: "7. Short-term scheduler is invoked frequently.", answer: "True" },
-                            { id: "v1_tf3", type: "tf", text: "8. Zombie process parent hasn't called wait().", answer: "True" },
-                            { id: "v1_tf4", type: "tf", text: "9. Ordinary pipes are bidirectional without parent-child.", answer: "False" },
-                            { id: "v1_tf5", type: "tf", text: "10. Indirect communication uses mailboxes.", answer: "True" },
-                            { id: "v1_f1", type: "fill", text: "11. Data structure representing a process: ____________", answer: ["pcb", "process control block"] },
-                            { id: "v1_f2", type: "fill", text: "12. UNIX system call to duplicate parent: ____________", answer: ["fork"] },
-                            { id: "v1_f3", type: "fill", text: "13. Spends more time doing I/O: ____________ process", answer: ["i/o bound", "io bound", "i/o-bound"] },
-                            { id: "v1_f4", type: "fill", text: "14. Scheduler that removes process to disk: ____________", answer: ["medium-term", "medium term"] },
-                            { id: "v1_f5", type: "fill", text: "15. Endpoint for communication: ____________", answer: ["socket"] }
-                        ]
-                    },
-                    {
-                        chapter: "Chapter 4: Threads", description: "Ordering, T/F, Fill-in-the-blanks",
-                        questions: [
-                            { id: "v1_o2", type: "ordering", text: "Order Pthread creation (1-5):", items: ["Parent calls pthread_join()", "Declare pthread_t and attr", "Thread executes runner", "Initialize attr", "Invoke pthread_create()"], answer: [5,1,4,2,3] },
-                            { id: "v1_tf6", type: "tf", text: "21. Amdahl's Law: Serial portion has disproportionate effect.", answer: "True" },
-                            { id: "v1_tf7", type: "tf", text: "22. Many-to-One allows parallel running on multicore.", answer: "False" },
-                            { id: "v1_tf8", type: "tf", text: "23. TLS is identical to local variables.", answer: "False" },
-                            { id: "v1_tf9", type: "tf", text: "24. GCD is Apple technology with dispatch queues.", answer: "True" },
-                            { id: "v1_tf10", type: "tf", text: "25. Deferred cancellation terminates immediately.", answer: "False" },
-                            { id: "v1_f6", type: "fill", text: "26. Subsets of same data across cores: ____________ parallelism", answer: ["data"] },
-                            { id: "v1_f7", type: "fill", text: "27. Maps user thread directly to kernel thread: ____________", answer: ["one-to-one", "one to one"] },
-                            { id: "v1_f8", type: "fill", text: "28. Threads created at startup waiting for work: thread ____________", answer: ["pool"] },
-                            { id: "v1_f9", type: "fill", text: "29. Scheduler activations communication mechanism: ____________", answer: ["upcall", "upcalls"] },
-                            { id: "v1_f10", type: "fill", text: "30. Linux thread creation system call: ____________", answer: ["clone"] }
-                        ]
-                    }
-                ]
-            },
-
-            // ================== VERSION 2 ==================
-            {
-                title: "Version 2: Advanced Practice", color: "bg-indigo-600", textColor: "text-indigo-600",
-                sections: [
-                    {
-                        chapter: "Chapter 1: Introduction", description: "15 Multiple Choice Questions",
-                        questions: [
-                            { id: "v2_q1", type: "mcq", text: "1. Fastest but smallest storage?", options: ["Main Memory", "SSD", "Cache", "Registers"], answer: 3 },
-                            { id: "v2_q2", type: "mcq", text: "2. In SMP, relationship between processors?", options: ["Boss/worker", "Equal peers", "One OS, others user", "Separate machines"], answer: 1 },
-                            { id: "v2_q3", type: "mcq", text: "3. Mode bit value for User Mode?", options: ["0", "1", "-1", "Null"], answer: 1 },
-                            { id: "v2_q4", type: "mcq", text: "4. SAN is common in?", options: ["Single-processor", "Clustered", "Mobile", "Desktops"], answer: 1 },
-                            { id: "v2_q5", type: "mcq", text: "5. User tries privileged instruction?", options: ["Skipped", "Hardware traps to OS", "Executes anyway", "Reboots"], answer: 1 },
-                            { id: "v2_q6", type: "mcq", text: "6. LIFO data structure?", options: ["Queue", "Stack", "Linked List", "Hash"], answer: 1 },
-                            { id: "v2_q7", type: "mcq", text: "7. Open-source OS?", options: ["Windows", "iOS", "GNU/Linux", "Mac Core"], answer: 2 },
-                            { id: "v2_q8", type: "mcq", text: "8. Real-time embedded system trait?", options: ["GUI required", "Fixed time constraints", "SMP", "Human interaction"], answer: 1 },
-                            { id: "v2_q9", type: "mcq", text: "9. Caching, spooling, device drivers?", options: ["CPU Schedule", "Memory", "I/O Subsystem", "File-System"], answer: 2 },
-                            { id: "v2_q10", type: "mcq", text: "10. Passed via interrupt vector?", options: ["Data block", "Address of handler", "Mode bit", "Source code"], answer: 1 },
-                            { id: "v2_q11", type: "mcq", text: "11. Emulation used when?", options: ["Identical CPU", "Multicore", "Different CPU type", "VM running"], answer: 2 },
-                            { id: "v2_q12", type: "mcq", text: "12. Cache coherency solves?", options: ["Hardware fail", "Recent value of shared data", "Disk fragment", "Passwords"], answer: 1 },
-                            { id: "v2_q13", type: "mcq", text: "13. VMM stands for?", options: ["Virtual Memory Mgr", "Variable Mode Modifier", "Virtual Machine Manager", "Volatile Mem"], answer: 2 },
-                            { id: "v2_q14", type: "mcq", text: "14. Logical extension of multiprogramming?", options: ["Batch", "Timesharing", "P2P", "Cloud"], answer: 1 },
-                            { id: "v2_q15", type: "mcq", text: "15. Controls access to resources?", options: ["Protection", "Security", "Emulation", "Privilege"], answer: 0 }
-                        ]
-                    },
-                    {
-                        chapter: "Chapter 2: OS Structures", description: "15 Matching Questions",
-                        questions: [
-                            {
-                                id: "v2_m1", type: "matching", text: "Match terms to definitions (A-O):",
-                                terms: ["1. Monolithic OS", "2. Profiling", "3. Debugging", "4. Mac OS X", "5. GUI", "6. POSIX", "7. Shared Memory", "8. Crash Dump", "9. Boot Block", "10. Bootstrap Loader", "11. Process Control", "12. Hybrid System", "13. Modules", "14. CLI", "15. Trace"],
-                                definitions: ["A. API standard", "B. R/W same memory region", "C. Combines OS structures", "D. Instruction pointer sampling", "E. Desktop metaphor interface", "F. Finding/fixing errors", "G. All functionality in single space", "H. Loaded by ROM, reads full boot", "I. Object-oriented loadable structure", "J. Captures kernel state on fail", "K. Reads/executes control statements", "L. ROM code that starts kernel", "M. System calls like end/abort", "N. Built on Mach and BSD", "O. Listing of executed system calls"],
-                                answer: ["G","D","F","N","E","A","B","J","H","L","M","C","I","K","O"]
-                            }
-                        ]
-                    },
-                    {
-                        chapter: "Chapter 3: Processes", description: "Ordering, T/F, Fill-in-the-blanks",
-                        questions: [
-                            { id: "v2_o1", type: "ordering", text: "Process creation/term in UNIX (1-5):", items: ["Child calls exit()", "Parent resumes", "Parent calls fork()", "Parent calls wait()", "Child uses exec()"], answer: [4,5,1,3,2] },
-                            { id: "v2_tf1", type: "tf", text: "6. Orphan process parent terminated without wait().", answer: "True" },
-                            { id: "v2_tf2", type: "tf", text: "7. Degree of multiprogramming = total CPU cores.", answer: "False" },
-                            { id: "v2_tf3", type: "tf", text: "8. Ready process is waiting for I/O.", answer: "False" },
-                            { id: "v2_tf4", type: "tf", text: "9. RPCs use stubs on client side.", answer: "True" },
-                            { id: "v2_tf5", type: "tf", text: "10. Shared-memory IPC uses heavy OS intervention.", answer: "False" },
-                            { id: "v2_f1", type: "fill", text: "11. Root UNIX process that inherits orphans: ____________", answer: ["init", "systemd"] },
-                            { id: "v2_f2", type: "fill", text: "12. Sender waits until message received: ____________ messaging", answer: ["synchronous", "blocking"] },
-                            { id: "v2_f3", type: "fill", text: "13. Holds PC, limits, state: ____________", answer: ["pcb", "process control block"] },
-                            { id: "v2_f4", type: "fill", text: "14. Executable code is in the ____________ section.", answer: ["text"] },
-                            { id: "v2_f5", type: "fill", text: "15. Terminating all children if parent dies: ____________ termination", answer: ["cascading"] }
-                        ]
-                    },
-                    {
-                        chapter: "Chapter 4: Threads", description: "Ordering, T/F, Fill-in-the-blanks",
-                        questions: [
-                            { id: "v2_o2", type: "ordering", text: "Thread Pool Request (1-5):", items: ["Assigned to idle thread", "Pool created at boot", "Waits in queue if full", "Thread completes service", "Returns to pool"], answer: [2,1,3,4,5] },
-                            { id: "v2_tf6", type: "tf", text: "21. Concurrency means simultaneous exact physical time.", answer: "False" },
-                            { id: "v2_tf7", type: "tf", text: "22. Many-to-Many uses equal or fewer kernel threads.", answer: "True" },
-                            { id: "v2_tf8", type: "tf", text: "23. Java threads ONLY created by Runnable interface.", answer: "False" },
-                            { id: "v2_tf9", type: "tf", text: "24. Signal handling in UNIX threads is complex.", answer: "True" },
-                            { id: "v2_tf10", type: "tf", text: "25. Asynchronous cancellation cleanly reclaims resources.", answer: "False" },
-                            { id: "v2_f6", type: "fill", text: "26. Distributing different threads across cores: ____________ parallelism", answer: ["task"] },
-                            { id: "v2_f7", type: "fill", text: "27. Intermediate data structure in Many-to-Many: ____________ process", answer: ["lightweight", "lwp"] },
-                            { id: "v2_f8", type: "fill", text: "28. Isolated copy of data across functions: Thread-____________ Storage", answer: ["local"] },
-                            { id: "v2_f9", type: "fill", text: "29. OpenMP compiler ____________ tell it to run in parallel.", answer: ["directives", "pragmas", "pragma"] },
-                            { id: "v2_f10", type: "fill", text: "30. clone() flag that dictates sharing memory: CLONE_____________", answer: ["vm"] }
-                        ]
-                    }
-                ]
-            },
-
-            // ================== VERSION 3 ==================
-            {
-                title: "Version 3: The Final Challenge", color: "bg-emerald-600", textColor: "text-emerald-600",
-                sections: [
-                    {
-                        chapter: "Chapter 1: Introduction", description: "15 Multiple Choice Questions",
-                        questions: [
-                            { id: "v3_q1", type: "mcq", text: "1. Clustered systems generally share storage via a:", options: ["A) Local Area Network", "B) Storage-Area Network (SAN)", "C) Boot Block", "D) USB Hub"], answer: 1 },
-                            { id: "v3_q2", type: "mcq", text: "2. The primary goal of multiprogramming is to:", options: ["A) Ensure the CPU always has one job to execute", "B) Provide a graphical interface", "C) Emulate different hardware architectures", "D) Run background system daemons"], answer: 0 },
-                            { id: "v3_q3", type: "mcq", text: "3. Which license provides 'copyleft' open-source protection?", options: ["A) MIT License", "B) Apache License", "C) GNU Public License (GPL)", "D) Microsoft EULA"], answer: 2 },
-                            { id: "v3_q4", type: "mcq", text: "4. Which OS environment type has well-defined fixed time constraints?", options: ["A) Time-sharing", "B) Real-time embedded systems", "C) Cloud computing", "D) Client-Server"], answer: 1 },
-                            { id: "v3_q5", type: "mcq", text: "5. BSD UNIX forms the core operating system of which platform?", options: ["A) Windows 11", "B) Android", "C) Mac OS X", "D) Ubuntu"], answer: 2 },
-                            { id: "v3_q6", type: "mcq", text: "6. The interrupt vector contains:", options: ["A) The bootloader instructions", "B) The memory addresses of interrupt service routines", "C) The process control blocks", "D) The device drivers"], answer: 1 },
-                            { id: "v3_q7", type: "mcq", text: "7. How does a device controller inform the CPU that it has finished an operation?", options: ["A) It sends an email", "B) It alters the mode bit", "C) It causes an interrupt", "D) It halts the CPU"], answer: 2 },
-                            { id: "v3_q8", type: "mcq", text: "8. From the OS perspective, a Trap is a:", options: ["A) Hardware-generated interrupt", "B) Software-generated interrupt", "C) Memory leak", "D) Failed bootstrap"], answer: 1 },
-                            { id: "v3_q9", type: "mcq", text: "9. Dual-mode operation provides protection by:", options: ["A) Limiting execution of privileged instructions to kernel mode", "B) Running two OSs simultaneously", "C) Requiring two passwords", "D) Mirroring hard drives"], answer: 0 },
-                            { id: "v3_q10", type: "mcq", text: "10. VMware Player is an example of a:", options: ["A) System call", "B) Virtual Machine Manager (VMM)", "C) Bootstrap loader", "D) Microkernel"], answer: 1 },
-                            { id: "v3_q11", type: "mcq", text: "11. Switching time in multitasking (timesharing) is:", options: ["A) Extremely slow", "B) Frequent, allowing user interaction", "C) Handled entirely by the user", "D) Determined by the hard drive speed"], answer: 1 },
-                            { id: "v3_q12", type: "mcq", text: "12. In a Peer-to-Peer architecture:", options: ["A) There are distinct clients and servers", "B) Nodes act as both clients and servers", "C) Terminals connect to a mainframe", "D) Storage is strictly centralized"], answer: 1 },
-                            { id: "v3_q13", type: "mcq", text: "13. What dictates *how* to do something in OS design?", options: ["A) Policy", "B) Standard", "C) Mechanism", "D) Interface"], answer: 2 },
-                            { id: "v3_q14", type: "mcq", text: "14. A tree data structure where every parent has at most two children is a:", options: ["A) Linked List", "B) Hash Map", "C) Binary Tree", "D) Stack"], answer: 2 },
-                            { id: "v3_q15", type: "mcq", text: "15. A system that scales up the number of processors in a single computer is utilizing:", options: ["A) Clustered systems", "B) Multiprocessor systems", "C) Cloud clusters", "D) Emulation"], answer: 1 }
-                        ]
-                    },
-                    {
-                        chapter: "Chapter 2: OS Structures", description: "15 Matching Questions",
-                        questions: [
-                            {
-                                id: "v3_m1", type: "matching", text: "Match the terms to their definitions (A-O):",
-                                terms: ["1. Linker", "2. Loader", "3. ABI", "4. API", "5. Microkernel", "6. Monolithic", "7. Daemon", "8. System Call", "9. UI", "10. SYSGEN", "11. Boot Block", "12. Virtual Machine", "13. LKM", "14. Debugging", "15. POSIX"],
+                                id: "v1_m1", type: "matching", text: "Match the OS components to their precise slide definitions:",
+                                terms: ["1. System Call", "2. Command Interpreter", "3. Microkernel", "4. API", "5. Layered Approach", "6. Message Passing", "7. Core Dump", "8. Loadable Kernel Modules", "9. SYSGEN", "10. Policy", "11. Mechanism", "12. System Programs", "13. DTrace", "14. Virtual Machine", "15. Shared Memory"],
                                 definitions: [
-                                    "A. Combines relocatable object files into an executable.",
-                                    "B. Loads the executable file into memory.",
-                                    "C. The architecture-level equivalent of an API.",
-                                    "D. Specifies functions available to an application programmer.",
-                                    "E. Kernel structure moving nonessential components to user space.",
-                                    "F. Kernel where all components are in a single large binary.",
-                                    "G. A background system process in UNIX/Linux.",
-                                    "H. Interface for running programs to request OS services.",
-                                    "I. Interfaces like Command Line or Graphics User Interface.",
-                                    "J. Generates custom OS compiled for specific hardware.",
-                                    "K. The first sector of a bootable disk.",
-                                    "L. Abstracts hardware into different execution environments.",
-                                    "M. Kernel using object-oriented loadable modules.",
-                                    "N. Finding and fixing system errors.",
-                                    "O. Standard API for UNIX-like systems."
+                                    "A. Programs like shells that allow users to directly enter commands to be executed.",
+                                    "B. Facility used to find bottlenecks and enable live instrumentation on production systems.",
+                                    "C. Principle that determines 'What will be done' by the system.",
+                                    "D. Architecture that moves non-essential components from the kernel into user space.",
+                                    "E. Capture of an application's memory state on disk following a process failure.",
+                                    "F. Principle that determines 'How to do something' in the design.",
+                                    "G. The low-level programming interface providing access to the services of the OS.",
+                                    "H. A set of functions available to an application programmer (e.g., Win32, POSIX).",
+                                    "I. Communication model where processes exchange information via the kernel.",
+                                    "J. Process of obtaining hardware config info to build a site-specific compiled kernel.",
+                                    "K. Design where the OS is divided into levels; level 0 is hardware and N is user interface.",
+                                    "L. Object-oriented approach where core components are separate but can link to the kernel at boot or run time.",
+                                    "M. Category of software that provides a convenient environment for program development and execution.",
+                                    "N. Implementation where two or more processes read and write to a common region of memory.",
+                                    "O. Software that abstracts hardware into several different execution environments."
+                                ],
+                                answer: ["G","A","D","H","K","I","E","L","J","C","F","M","B","O","N"]
+                            }
+                        ]
+                    },
+                    {
+                        chapter: "Chapter 3: Processes", description: "Ordering & Blanks",
+                        questions: [
+                            { id: "v1_o1", type: "ordering", text: "Order the standard UNIX process creation/termination lifecycle (1-5):", items: ["Parent process calls wait() to suspend itself.", "Child process executes a new program via exec().", "Parent process uses fork() to create a new child.", "Child process finishes and calls exit().", "Parent process resumes execution after child terminates."], answer: [3,4,1,5,2] },
+                            { id: "v1_tf1", type: "tf", text: "6. A process in the 'Ready' state is residing in main memory and is waiting for an I/O event to occur.", answer: "False" },
+                            { id: "v1_tf2", type: "tf", text: "7. Short-term scheduling (CPU scheduler) selects which process should be executed next and is invoked very frequently.", answer: "True" },
+                            { id: "v1_tf3", type: "tf", text: "8. A 'Zombie' is a process that has terminated, but whose parent has not yet called wait().", answer: "True" },
+                            { id: "v1_tf4", type: "tf", text: "9. Ordinary pipes in UNIX are bidirectional and do not require a parent-child relationship.", answer: "False" },
+                            { id: "v1_tf5", type: "tf", text: "10. Context switch time is considered overhead because the system does no useful work while switching.", answer: "True" },
+                            { id: "v1_f1", type: "fill", text: "11. The ____________ is the data structure that stores the state, program counter, and registers for a process.", answer: ["pcb", "process control block"] },
+                            { id: "v1_f2", type: "fill", text: "12. A process that spends more time doing computations than I/O is called a ____________ process.", answer: ["cpu bound", "cpu-bound"] },
+                            { id: "v1_f3", type: "fill", text: "13. The number of processes currently in memory is known as the degree of ____________.", answer: ["multiprogramming"] },
+                            { id: "v1_f4", type: "fill", text: "14. A ____________ is an endpoint for communication, defined by an IP address and a port number.", answer: ["socket"] },
+                            { id: "v1_f5", type: "fill", text: "15. The ____________ system call in UNIX is used to replace the process's memory space with a new program.", answer: ["exec", "exec()"] }
+                        ]
+                    },
+                    {
+                        chapter: "Chapter 4: Threads", description: "Ordering & Blanks",
+                        questions: [
+                            { id: "v1_o2", type: "ordering", text: "Order the lifecycle of a thread using a Thread Pool (1-5):", items: ["The request is placed into a queue if all threads are busy.", "A pool of threads is created upon system startup.", "An idle thread from the pool is assigned to handle the request.", "The thread completes the task and becomes available.", "The thread returns to the pool to wait for the next request."], answer: [2,1,3,4,5] },
+                            { id: "v1_tf6", type: "tf", text: "21. Parallelism implies that a system can perform more than one task simultaneously.", answer: "True" },
+                            { id: "v1_tf7", type: "tf", text: "22. In the Many-to-One multithreading model, a single blocking system call from one user thread will block all other threads.", answer: "True" },
+                            { id: "v1_tf8", type: "tf", text: "23. Thread-Local Storage (TLS) is only visible during a single function call, similar to a local variable.", answer: "False" },
+                            { id: "v1_tf9", type: "tf", text: "24. Concurrency can be achieved on a single-processor system through interleaved execution.", answer: "True" },
+                            { id: "v1_tf10", type: "tf", text: "25. Asynchronous thread cancellation waits until the target thread has reached a cancellation point.", answer: "False" },
+                            { id: "v1_f6", type: "fill", text: "26. According to Amdahl's Law, the ____________ portion of an application limits the performance gain from adding more cores.", answer: ["serial"] },
+                            { id: "v1_f7", type: "fill", text: "27. The ____________ model maps each user thread to a separate kernel thread.", answer: ["one-to-one", "one to one"] },
+                            { id: "v1_f8", type: "fill", text: "28. An ____________ is a communication mechanism used in scheduler activations to notify the thread library of kernel events.", answer: ["upcall"] },
+                            { id: "v1_f9", type: "fill", text: "29. ____________ Central Dispatch (GCD) is an Apple technology that uses dispatch queues for multithreading.", answer: ["grand"] },
+                            { id: "v1_f10", type: "fill", text: "30. The ____________ system call in Linux allows a child task to share the address space of the parent process.", answer: ["clone", "clone()"] }
+                        ]
+                    }
+                ]
+            },
+            // Note: Version 2 and 3 would be similarly expanded. 
+            // For brevity in this message, I will keep the V1 detailed and ensure the script is functional.
+            // (Repeating full detail for V2 and V3 below in the JS logic)
+            {
+                title: "Detailed Set B: System Design & Structures", color: "bg-indigo-600", textColor: "text-indigo-600",
+                sections: [
+                    {
+                        chapter: "Chapter 1: Introduction", description: "Architecture MCQ",
+                        questions: [
+                            { id: "v2_q1", type: "mcq", text: "1. Which storage device is at the very top of the storage hierarchy?", options: ["A) Main Memory", "B) Cache", "C) Registers", "D) Magnetic Disk"], answer: 2 },
+                            { id: "v2_q2", type: "mcq", text: "2. What happens when the CPU is interrupted?", options: ["A) It immediately shuts down the current process.", "B) It stops what it is doing and transfers execution to a fixed location (interrupt service routine).", "C) It ignores the signal until the current instruction cycle is finished.", "D) It switches the mode bit from 0 to 1."], answer: 1 },
+                            { id: "v2_q3", type: "mcq", text: "3. In a multi-core system, each core typically has its own:", options: ["A) Hard drive partition", "B) Register set and L1 Cache", "C) Operating System kernel", "D) Main Memory (RAM)"], answer: 1 },
+                            { id: "v2_q4", type: "mcq", text: "4. Which system allows 'graceful degradation' or 'fault tolerance'?", options: ["A) Single-processor systems", "B) Multiprocessor systems", "C) Batch systems", "D) Real-time systems"], answer: 1 },
+                            { id: "v2_q5", type: "mcq", text: "5. What is the main goal of a clustered system?", options: ["A) To reduce energy consumption.", "B) To provide high-availability service.", "C) To emulate older hardware architectures.", "D) To provide a simple UI for users."], answer: 1 },
+                            { id: "v2_q6", type: "mcq", text: "6. 'Copying information into faster storage' is the definition of:", options: ["A) Spooling", "B) Caching", "C) Virtualization", "D) Paging"], answer: 1 },
+                            { id: "v2_q7", type: "mcq", text: "7. A 'Software-generated interrupt' is also known as a:", options: ["A) Maskable interrupt", "B) Trap or Exception", "C) System Call", "D) Signal"], answer: 1 },
+                            { id: "v2_q8", type: "mcq", text: "8. What is the state of the mode bit during a System Call?", options: ["A) 1", "B) 0", "C) -1", "D) Constant"], answer: 1 },
+                            { id: "v2_q9", type: "mcq", text: "9. Which computing environment is characterized by 'nodes acting as both clients and servers'?", options: ["A) Traditional Desktop", "B) Cloud Computing", "C) Peer-to-Peer", "D) Clustered Systems"], answer: 2 },
+                            { id: "v2_q10", type: "mcq", text: "10. What is the role of a 'device controller'?", options: ["A) To write application code for specific hardware.", "B) To manage a specific type of device and maintain local buffer storage.", "C) To act as an intermediary between the user and the Shell.", "D) To provide the bootstrap loader code."], answer: 1 },
+                            { id: "v2_q11", type: "mcq", text: "11. 'Virtualization' allows an OS to:", options: ["A) Run faster by skipping kernel checks.", "B) Run as an application within another OS.", "C) Use more RAM than is physically available.", "D) Connect to a SAN."], answer: 1 },
+                            { id: "v2_q12", type: "mcq", text: "12. What handles the 'resource allocator' function of the OS?", options: ["A) The Shell", "B) The Kernel", "C) The User", "D) The Hardware"], answer: 1 },
+                            { id: "v2_q13", type: "mcq", text: "13. Which of the following is an example of 'Open Source' OS?", options: ["A) Windows 10", "B) iOS", "C) Linux", "D) MS-DOS"], answer: 2 },
+                            { id: "v2_q14", type: "mcq", text: "14. A system with fixed time constraints is a:", options: ["A) Batch system", "B) Real-time embedded system", "C) Time-sharing system", "D) Distributed system"], answer: 1 },
+                            { id: "v2_q15", type: "mcq", text: "15. Which kernel data structure is 'First-In, First-Out'?", options: ["A) Stack", "B) Queue", "C) Tree", "D) Linked List"], answer: 1 }
+                        ]
+                    },
+                    {
+                        chapter: "Chapter 2: OS Structures", description: "Matching - Structures",
+                        questions: [
+                            {
+                                id: "v2_m1", type: "matching", text: "Match terms to their specific descriptions:",
+                                terms: ["1. Monolithic", "2. Layered", "3. Microkernel", "4. Modules", "5. Hybrid", "6. API", "7. System Call", "8. GUI", "9. CLI", "10. Batch", "11. POSIX", "12. Win32", "13. JVM", "14. libc", "15. DTrace"],
+                                definitions: [
+                                    "A. Structure where all functionality is in one single kernel level (e.g., original UNIX).",
+                                    "B. Dividing OS into levels where each level uses only functions of lower-level layers.",
+                                    "C. Moving non-essential kernel modules to user space to improve reliability.",
+                                    "D. Modern approach using object-oriented techniques to load core components as needed.",
+                                    "E. Combination of various structures (e.g., Linux, Windows).",
+                                    "F. Set of functions available to application programmers.",
+                                    "G. Programming interface providing access to OS services.",
+                                    "H. User interface with icons and mouse interaction.",
+                                    "I. User interface where commands are typed directly into a shell.",
+                                    "J. UI where commands and directives are collected into files.",
+                                    "K. Standard API for UNIX-like systems.",
+                                    "L. Primary API for Windows systems.",
+                                    "M. Environment that runs Java applications.",
+                                    "N. Standard C library that handles system call mapping in UNIX.",
+                                    "O. Debugging tool for live instrumentation on production systems."
                                 ],
                                 answer: ["A","B","C","D","E","F","G","H","I","J","K","L","M","N","O"]
                             }
                         ]
                     },
                     {
-                        chapter: "Chapter 3: Processes", description: "Ordering, T/F, Fill-in-the-blanks",
+                        chapter: "Chapter 3: Processes", description: "T/F & Blanks",
                         questions: [
-                            { id: "v3_o1", type: "ordering", text: "Order the states a process goes through in a normal execution cycle (1-5):", items: ["Process is Dispatched to CPU (Running)", "Waits for an I/O event (Waiting)", "Finishes execution (Terminated)", "Process is created (New)", "Admitted to the Ready queue"], answer: [3,4,5,1,2] },
-                            { id: "v3_tf1", type: "tf", text: "6. Context switch time is considered pure overhead because the system does no useful work while switching.", answer: "True" },
-                            { id: "v3_tf2", type: "tf", text: "7. Shared memory IPC requires OS intervention on every single read and write operation.", answer: "False" },
-                            { id: "v3_tf3", type: "tf", text: "8. The Process Control Block (PCB) includes the program counter and CPU registers.", answer: "True" },
-                            { id: "v3_tf4", type: "tf", text: "9. Ordinary pipes can easily be accessed across different machines over a network.", answer: "False" },
-                            { id: "v3_tf5", type: "tf", text: "10. Sockets are identified by concatenating an IP address and a port number.", answer: "True" },
-                            { id: "v3_f1", type: "fill", text: "11. ____________ pipes allow bidirectional communication without requiring a parent-child relationship.", answer: ["named"] },
-                            { id: "v3_f2", type: "fill", text: "12. RPC communication uses ____________ on the client side to hide the details of network messaging.", answer: ["stubs", "stub"] },
-                            { id: "v3_f3", type: "fill", text: "13. The ____________ queue contains all processes residing in main memory that are ready to execute.", answer: ["ready"] },
-                            { id: "v3_f4", type: "fill", text: "14. A process that has finished executing but its parent hasn't called wait() is known as a ____________.", answer: ["zombie"] },
-                            { id: "v3_f5", type: "fill", text: "15. The ____________ system call creates a new process in UNIX environments.", answer: ["fork"] }
+                            { id: "v2_o1", type: "ordering", text: "Order the states a process goes through in a normal execution cycle (1-5):", items: ["Process is Dispatched to the CPU.", "Process is admitted to the ready queue.", "Process finishes execution and exits.", "Process is created.", "Process waits for an I/O event."], answer: [3,4,5,1,2] },
+                            { id: "v2_tf1", type: "tf", text: "6. Shared memory is typically faster than message passing because it does not require kernel intervention for every data transfer.", answer: "True" },
+                            { id: "v2_tf2", type: "tf", text: "7. A process is a passive entity, while a program is an active entity.", answer: "False" },
+                            { id: "v2_tf3", type: "tf", text: "8. Indirect communication via message passing requires both processes to be active at the same time.", answer: "False" },
+                            { id: "v2_tf4", type: "tf", text: "9. Named pipes allow communication between processes on different machines.", answer: "True" },
+                            { id: "v2_tf5", type: "tf", text: "10. The 'init' process in UNIX is the parent of all processes.", answer: "True" },
+                            { id: "v2_f1", type: "fill", text: "11. The ____________ section of a process contains global variables.", answer: ["data"] },
+                            { id: "v2_f2", type: "fill", text: "12. In IPC, ____________ is a model where the kernel manages a message queue for communicating processes.", answer: ["message passing"] },
+                            { id: "v2_f3", type: "fill", text: "13. A process that has no parent (parent died without calling wait) is called an ____________ process.", answer: ["orphan"] },
+                            { id: "v2_f4", type: "fill", text: "14. A ____________ is a data structure used by the OS to represent a process.", answer: ["pcb", "process control block"] },
+                            { id: "v2_f5", type: "fill", text: "15. ____________ communication in message passing involves the sender blocking until the message is received.", answer: ["synchronous", "blocking"] }
                         ]
                     },
                     {
-                        chapter: "Chapter 4: Threads", description: "Ordering, T/F, Fill-in-the-blanks",
+                        chapter: "Chapter 4: Threads", description: "Models & Data",
                         questions: [
-                            { id: "v3_o2", type: "ordering", text: "Order the lifecycle of an OpenMP parallel region (1-5):", items: ["OpenMP creates a team of concurrent threads.", "Threads join back together, sequential resumes.", "All threads simultaneously execute the parallel block.", "Program executes as a single thread sequentially.", "Main thread encounters #pragma omp parallel."], answer: [3,5,4,1,2] },
-                            { id: "v3_tf6", type: "tf", text: "21. Threads within the same process share their text, data, and OS resources.", answer: "True" },
-                            { id: "v3_tf7", type: "tf", text: "22. Thread-local storage (TLS) is shared simultaneously among all threads in a process.", answer: "False" },
-                            { id: "v3_tf8", type: "tf", text: "23. Concurrency strictly requires multiple physical processors to exist.", answer: "False" },
-                            { id: "v3_tf9", type: "tf", text: "24. POSIX Pthreads is a specification for thread behavior, not an implementation.", answer: "True" },
-                            { id: "v3_tf10", type: "tf", text: "25. The default UNIX thread cancellation type is asynchronous cancellation.", answer: "False" },
-                            { id: "v3_f6", type: "fill", text: "26. ____________ threading shifts the burden of thread creation from programmers to compilers/libraries.", answer: ["implicit"] },
-                            { id: "v3_f7", type: "fill", text: "27. ____________ Central Dispatch (GCD) is an Apple technology for managing concurrent code.", answer: ["grand"] },
-                            { id: "v3_f8", type: "fill", text: "28. A thread library provides an ____________ for creating and managing threads.", answer: ["api"] },
-                            { id: "v3_f9", type: "fill", text: "29. The ____________-to-One model maps many user threads to one kernel thread.", answer: ["many"] },
-                            { id: "v3_f10", type: "fill", text: "30. In Windows, the ____________ contains the thread id, user-mode stack, and thread-local storage.", answer: ["teb", "thread environment block"] }
+                            { id: "v2_o2", type: "ordering", text: "Order the steps for a Pthread creation in C (1-5):", items: ["Wait for the thread using pthread_join().", "Initialize thread attributes.", "Create the thread with pthread_create().", "Declare thread identifier and attributes.", "The thread starts executing the 'runner' function."], answer: [5,2,4,1,3] },
+                            { id: "v2_tf6", type: "tf", text: "21. Data parallelism involves distributing subsets of the same data across multiple cores.", answer: "True" },
+                            { id: "v2_tf7", type: "tf", text: "22. The Many-to-Many model multiplexes many user-level threads to an equal or smaller number of kernel threads.", answer: "True" },
+                            { id: "v2_tf8", type: "tf", text: "23. In Java, threads are managed exclusively by the OS kernel and not the JVM.", answer: "False" },
+                            { id: "v2_tf9", type: "tf", text: "24. Signal handling is simpler in multithreaded processes than in single-threaded ones.", answer: "False" },
+                            { id: "v2_tf10", type: "tf", text: "25. A lightweight process (LWP) is the intermediate data structure between user and kernel threads.", answer: "True" },
+                            { id: "v2_f6", type: "fill", text: "26. ____________ involves distributing tasks (threads) across multiple cores.", answer: ["task parallelism"] },
+                            { id: "v2_f7", type: "fill", text: "27. Pthreads is a ____________, not an implementation, for thread behavior.", answer: ["specification"] },
+                            { id: "v2_f8", type: "fill", text: "28. ____________ cancellation terminates the target thread immediately.", answer: ["asynchronous"] },
+                            { id: "v2_f9", type: "fill", text: "29. OpenMP uses compiler ____________ to parallelize C/C++ code.", answer: ["directives", "pragmas"] },
+                            { id: "v2_f10", type: "fill", text: "30. In Windows, the ____________ contains thread ID and user-mode stack.", answer: ["teb", "thread environment block"] }
+                        ]
+                    }
+                ]
+            },
+            {
+                title: "Detailed Set C: System Calls & Threading Issues", color: "bg-emerald-600", textColor: "text-emerald-600",
+                sections: [
+                    {
+                        chapter: "Chapter 1: Introduction", description: "Computing MCQ",
+                        questions: [
+                            { id: "v3_q1", type: "mcq", text: "1. What is the primary purpose of a bootstrap program?", options: ["A) To manage user passwords.", "B) To initialize all aspects of the system and load the kernel.", "C) To compile C++ programs.", "D) To act as a GUI for the user."], answer: 1 },
+                            { id: "v3_q2", type: "mcq", text: "2. Which hardware component handles specific I/O devices and their local buffers?", options: ["A) CPU", "B) Device Controller", "C) Interrupt Vector", "D) System Bus"], answer: 1 },
+                            { id: "v3_q3", type: "mcq", text: "3. 'Caching' is most effective because:", options: ["A) Information is permanent.", "B) It uses the largest storage available.", "C) It moves data to faster storage temporarily.", "D) It eliminates the need for Main Memory."], answer: 2 },
+                            { id: "v3_q4", type: "mcq", text: "4. Multiprogramming efficiency is achieved by:", options: ["A) Running only one job at a time.", "B) Keeping the CPU busy by switching to another job when one must wait (e.g., for I/O).", "C) Using only registers.", "D) Requiring a user to be present at all times."], answer: 1 },
+                            { id: "v3_q5", type: "mcq", text: "5. In Timesharing systems, if a job is too large to fit in memory, it is handled via:", options: ["A) DMA", "B) Swapping", "C) Spooling", "D) Polling"], answer: 1 },
+                            { id: "v3_q6", type: "mcq", text: "6. Which mode bit value allows the execution of 'privileged instructions'?", options: ["A) 1", "B) 0", "C) -1", "D) 2"], answer: 1 },
+                            { id: "v3_q7", type: "mcq", text: "7. Why is a 'Timer' necessary in an OS?", options: ["A) To show the user the current clock time.", "B) To ensure the OS maintains control and prevents infinite loops.", "C) To speed up DMA transfers.", "D) To schedule power-off times."], answer: 1 },
+                            { id: "v3_q8", type: "mcq", text: "8. Which of the following is a 'Kernel Data Structure'?", options: ["A) Windows Explorer", "B) Singly Linked List", "C) MS Word", "D) The CPU Registers"], answer: 1 },
+                            { id: "v3_q9", type: "mcq", text: "9. Which computing environment uses 'virtualization' to run guest OSs?", options: ["A) Traditional", "B) Mobile", "C) Cloud/Server", "D) Real-time"], answer: 2 },
+                            { id: "v3_q10", type: "mcq", text: "10. 'Copyleft' is associated with which license?", options: ["A) MIT", "B) GNU Public License (GPL)", "C) Proprietary", "D) Apache"], answer: 1 },
+                            { id: "v3_q11", type: "mcq", text: "11. 'Graceful degradation' is a feature of:", options: ["A) Single-processor systems", "B) Multiprocessor systems", "C) Batch systems", "D) BIOS"], answer: 1 },
+                            { id: "v3_q12", type: "mcq", text: "12. In storage, 'Volatile' means:", options: ["A) Data is permanent.", "B) Data is lost when power is removed.", "C) Data is encrypted.", "D) Data is stored on magnetic tape."], answer: 1 },
+                            { id: "v3_q13", type: "mcq", text: "13. What is the 'Interrupt Vector'?", options: ["A) A list of all connected devices.", "B) A table of pointers to interrupt service routines.", "C) The physical location of the hard drive.", "D) A command in the Shell."], answer: 1 },
+                            { id: "v3_q14", type: "mcq", text: "14. A tree with at most 2 children per parent is a:", options: ["A) Binary Search Tree", "B) Linked List", "C) Hash Table", "D) Stack"], answer: 0 },
+                            { id: "v3_q15", type: "mcq", text: "15. The 'operating system goals' include:", options: ["A) Making computer hardware efficient.", "B) Making computer hardware more expensive.", "C) Deleting user files regularly.", "D) Minimizing the number of programs running."], answer: 0 }
+                        ]
+                    },
+                    {
+                        chapter: "Chapter 2: OS Structures", description: "Matching - Design",
+                        questions: [
+                            {
+                                id: "v3_m1", type: "matching", text: "Match terms to their definitions:",
+                                terms: ["1. SYSGEN", "2. Bootstrap", "3. ROM", "4. Firmware", "5. GRUB", "6. Monolithic", "7. Microkernel", "8. LKM", "9. Hybrid", "10. System Call", "11. Standard C Library", "12. API", "13. POSIX", "14. Win32", "15. Policy"],
+                                definitions: [
+                                    "A. Program used to build a customized kernel for a specific site.",
+                                    "B. Small piece of code that locates the kernel and starts it.",
+                                    "C. Storage where initial boot code is typically held.",
+                                    "D. Software stored in ROM or EEPROM.",
+                                    "E. Common bootstrap loader that allows kernel selection.",
+                                    "F. Tightly coupled system structure (e.g., original UNIX).",
+                                    "G. Moves services to user space to improve system reliability.",
+                                    "H. Modules that can be linked to the kernel at runtime.",
+                                    "I. Combinations of Monolithic and Microkernel (e.g., Mac OS X).",
+                                    "J. Programming interface for OS services.",
+                                    "K. Library (libc) that maps API calls to system calls.",
+                                    "L. Set of functions available to programmers (Win32, POSIX).",
+                                    "M. Standard API for UNIX systems.",
+                                    "N. Standard API for Windows systems.",
+                                    "O. Determines 'what' will be done."
+                                ],
+                                answer: ["A","B","C","D","E","F","G","H","I","J","K","L","M","N","O"]
+                            }
+                        ]
+                    },
+                    {
+                        chapter: "Chapter 3: Processes", description: "IPC & Sockets",
+                        questions: [
+                            { id: "v3_o1", type: "ordering", text: "Order the steps of a Remote Procedure Call (RPC) (1-5):", items: ["The client stub marshals parameters into a message.", "The OS sends the message to the server.", "The client calls a local stub function.", "The server stub unpacks the message and calls the procedure.", "The result is sent back to the client."], answer: [3,4,1,5,2] },
+                            { id: "v3_tf1", type: "tf", text: "6. A socket is an endpoint for communication identified by an IP address and a port number.", answer: "True" },
+                            { id: "v3_tf2", type: "tf", text: "7. Ordinary pipes can be used for communication between processes on different machines.", answer: "False" },
+                            { id: "v3_tf3", type: "tf", text: "8. Message passing is better for exchanging large amounts of data than shared memory.", answer: "False" },
+                            { id: "v3_tf4", type: "tf", text: "9. Cascading termination means if a parent terminates, all its children are also terminated.", answer: "True" },
+                            { id: "v3_tf5", type: "tf", text: "10. In direct communication, the sender must explicitly name the recipient process.", answer: "True" },
+                            { id: "v3_f1", type: "fill", text: "11. The ____________ system call creates a duplicate process in UNIX.", answer: ["fork"] },
+                            { id: "v3_f2", type: "fill", text: "12. In message passing, ____________ communication does not require the sender to wait.", answer: ["asynchronous", "non-blocking"] },
+                            { id: "v3_f3", type: "fill", text: "13. A ____________ is a process that has finished but not yet been reaped by its parent.", answer: ["zombie"] },
+                            { id: "v3_f4", type: "fill", text: "14. ____________ pipes are bidirectional.", answer: ["named"] },
+                            { id: "v3_f5", type: "fill", text: "15. The ____________ queue stores processes waiting for the CPU.", answer: ["ready"] }
+                        ]
+                    },
+                    {
+                        chapter: "Chapter 4: Threads", description: "Cancellation & Libraries",
+                        questions: [
+                            { id: "v3_o2", type: "ordering", text: "Order the creation of a Java thread (1-5):", items: ["Call the start() method on the thread object.", "Define a class that implements Runnable or extends Thread.", "Override the run() method with thread code.", "The JVM schedules the thread to execute.", "Create an instance of the thread class."], answer: [3,5,1,4,2] },
+                            { id: "v3_tf6", type: "tf", text: "21. Deferred cancellation allows a thread to check if it should be cancelled at designated points.", answer: "True" },
+                            { id: "v3_tf7", type: "tf", text: "22. Threads share the same stack space as their parent process.", answer: "False" },
+                            { id: "v3_tf8", type: "tf", text: "23. Multi-core systems allow for true parallelism of threads.", answer: "True" },
+                            { id: "v3_tf9", type: "tf", text: "24. A thread library provides an API for creating and managing threads.", answer: "True" },
+                            { id: "v3_tf10", type: "tf", text: "25. Implicit threading moves the burden of thread management to the compiler or libraries.", answer: "True" },
+                            { id: "v3_f6", type: "fill", text: "26. ____________ parallelism involves distributing different tasks across cores.", answer: ["task"] },
+                            { id: "v3_f7", type: "fill", text: "27. In the ____________ model, multiple user threads map to a single kernel thread.", answer: ["many-to-one", "many to one"] },
+                            { id: "v3_f8", type: "fill", text: "28. A ____________ allows threads to be recycled instead of created/destroyed for every task.", answer: ["thread pool"] },
+                            { id: "v3_f9", type: "fill", text: "29. Pthreads is a specification for ____________.", answer: ["threading", "threads"] },
+                            { id: "v3_f10", type: "fill", text: "30. Signal ____________ is the mechanism for delivering signals to threads.", answer: ["handling"] }
                         ]
                     }
                 ]
             }
         ];
 
-        // --- APPLICATION LOGIC ---
+        // --- APP LOGIC ---
         let currentQuizIndex = -1;
 
         function showMenu() {
@@ -344,21 +375,17 @@
         function loadQuiz(index) {
             currentQuizIndex = index;
             const quiz = allQuizzes[index];
-            
-            // UI Toggles
             document.getElementById('menu-view').classList.add('hidden');
             document.getElementById('quiz-view').classList.remove('hidden');
             document.getElementById('nav-back-btn').classList.remove('hidden');
             document.getElementById('results-container').classList.add('hidden');
             
-            // Build Header
             const header = document.getElementById('quiz-header');
             header.className = `p-6 text-white text-center ${quiz.color}`;
-            header.innerHTML = `<h1 class="text-3xl font-bold mb-2">${quiz.title}</h1><p class="opacity-90">Chapters 1 to 4 Practice</p>`;
+            header.innerHTML = `<h1 class="text-3xl font-bold mb-2">${quiz.title}</h1><p class="opacity-90">Detailed Practice Set</p>`;
 
-            // Build Questions
             const container = document.getElementById('quiz-container');
-            container.innerHTML = ''; // clear old
+            container.innerHTML = ''; 
 
             quiz.sections.forEach(section => {
                 const sectionDiv = document.createElement('div');
@@ -440,43 +467,32 @@
             window.scrollTo(0,0);
         }
 
-        // --- GRADING LOGIC ---
         document.getElementById('submit-btn').addEventListener('click', () => {
             if(currentQuizIndex === -1) return;
-            
             const quiz = allQuizzes[currentQuizIndex];
-            let score = 0;
-            let total = 60; 
+            let score = 0; let total = 60; 
 
             quiz.sections.forEach(section => {
                 section.questions.forEach(q => {
                     const container = document.getElementById(`container_${q.id}`);
                     const feedback = document.getElementById(`feedback_${q.id}`);
-                    let isCorrect = false;
-                    let correctAnsText = "";
-
+                    let isCorrect = false; let correctAnsText = "";
                     container.classList.remove('correct', 'incorrect');
                     feedback.style.display = 'block';
 
                     if (q.type === 'mcq') {
                         const selected = document.querySelector(`input[name="${q.id}"]:checked`);
-                        if (selected && parseInt(selected.value) === q.answer) {
-                            isCorrect = true; score++;
-                        }
+                        if (selected && parseInt(selected.value) === q.answer) { isCorrect = true; score++; }
                         correctAnsText = `Correct Answer: ${q.options[q.answer]}`;
                     } 
                     else if (q.type === 'tf') {
                         const selected = document.querySelector(`input[name="${q.id}"]:checked`);
-                        if (selected && selected.value === q.answer) {
-                            isCorrect = true; score++;
-                        }
+                        if (selected && selected.value === q.answer) { isCorrect = true; score++; }
                         correctAnsText = `Correct Answer: ${q.answer}`;
                     }
                     else if (q.type === 'fill') {
                         const inputVal = document.getElementById(q.id).value.trim().toLowerCase();
-                        if (q.answer.includes(inputVal)) {
-                            isCorrect = true; score++;
-                        }
+                        if (q.answer.includes(inputVal)) { isCorrect = true; score++; }
                         correctAnsText = `Accepted Answer(s): ${q.answer.join(" OR ")}`;
                     }
                     else if (q.type === 'matching') {
@@ -485,8 +501,7 @@
                             const val = document.getElementById(`${q.id}_${i}`).value.toUpperCase();
                             if (val === q.answer[i]) matchScore++;
                         }
-                        score += matchScore;
-                        if (matchScore === q.terms.length) isCorrect = true;
+                        score += matchScore; if (matchScore === q.terms.length) isCorrect = true;
                         correctAnsText = `Correct Order: ${q.answer.join(", ")}`;
                     }
                     else if (q.type === 'ordering') {
@@ -495,8 +510,7 @@
                             const val = parseInt(document.getElementById(`${q.id}_${i}`).value);
                             if (val === q.answer[i]) ordScore++;
                         }
-                        score += ordScore;
-                        if (ordScore === q.items.length) isCorrect = true;
+                        score += ordScore; if (ordScore === q.items.length) isCorrect = true;
                         correctAnsText = `Correct Sequence: ${q.answer.join(", ")}`;
                     }
 
@@ -515,16 +529,9 @@
             const resultsContainer = document.getElementById('results-container');
             const scoreDisplay = document.getElementById('score-display');
             const percentage = Math.round((score/total)*100);
-            
-            // Color code the final score
-            let scoreColor = "text-red-500";
-            if(percentage >= 90) scoreColor = "text-emerald-500";
-            else if(percentage >= 75) scoreColor = "text-blue-500";
-            else if(percentage >= 60) scoreColor = "text-yellow-500";
-
+            let scoreColor = percentage >= 75 ? "text-emerald-500" : "text-red-500";
             scoreDisplay.className = scoreColor;
             scoreDisplay.innerText = `${score} / ${total} (${percentage}%)`;
-            
             resultsContainer.classList.remove('hidden');
             window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
         });
