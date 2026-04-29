@@ -294,26 +294,26 @@
                         chapter: "Chapter 2: OS Structures", description: "15 Matching Questions",
                         questions: [
                             {
-                                id: "v3_m1", type: "matching", text: "Match the terms to their definitions (A-O):",
-                                terms: ["1. Linker", "2. Loader", "3. ABI", "4. API", "5. Microkernel", "6. Monolithic", "7. Daemon", "8. System Call", "9. UI", "10. SYSGEN", "11. Boot Block", "12. Virtual Machine", "13. LKM", "14. Debugging", "15. POSIX"],
+                                id: "v3_m1", type: "matching", text: "Match the terms to their definitions:",
+                                terms: ["1. SYSGEN", "2. Bootstrap", "3. ROM", "4. Firmware", "5. GRUB", "6. Monolithic", "7. Microkernel", "8. LKM", "9. Hybrid", "10. System Call", "11. Standard C Library", "12. API", "13. POSIX", "14. Win32", "15. Policy"],
                                 definitions: [
-                                    "A. Combines relocatable object files into an executable.",
-                                    "B. Loads the executable file into memory.",
-                                    "C. The architecture-level equivalent of an API.",
-                                    "D. Specifies functions available to an application programmer.",
-                                    "E. Kernel structure moving nonessential components to user space.",
-                                    "F. Kernel where all components are in a single large binary.",
-                                    "G. A background system process in UNIX/Linux.",
-                                    "H. Interface for running programs to request OS services.",
-                                    "I. Interfaces like Command Line or Graphics User Interface.",
-                                    "J. Generates custom OS compiled for specific hardware.",
-                                    "K. The first sector of a bootable disk.",
-                                    "L. Abstracts hardware into different execution environments.",
-                                    "M. Kernel using object-oriented loadable modules.",
-                                    "N. Finding and fixing system errors.",
-                                    "O. Standard API for UNIX-like systems."
+                                    "A. Moves services to user space to improve system reliability.",
+                                    "B. Standard API for UNIX systems.",
+                                    "C. Storage where initial boot code is typically held.",
+                                    "D. Program used to build a customized kernel for a specific site.",
+                                    "E. Combinations of Monolithic and Microkernel (e.g., Mac OS X).",
+                                    "F. Software stored in ROM or EEPROM.",
+                                    "G. Library (libc) that maps API calls to system calls.",
+                                    "H. Programming interface for OS services.",
+                                    "I. Common bootstrap loader that allows kernel selection.",
+                                    "J. Tightly coupled system structure (e.g., original UNIX).",
+                                    "K. Determines 'what' will be done.",
+                                    "L. Small piece of code that locates the kernel and starts it.",
+                                    "M. Set of functions available to programmers (Win32, POSIX).",
+                                    "N. Modules that can be linked to the kernel at runtime.",
+                                    "O. Standard API for Windows systems."
                                 ],
-                                answer: ["A","B","C","D","E","F","G","H","I","J","K","L","M","N","O"]
+                                answer: ["D", "L", "C", "F", "I", "J", "A", "N", "E", "H", "G", "M", "B", "O", "K"]
                             }
                         ]
                     },
